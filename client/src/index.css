@@ -1,0 +1,2114 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SCRIBBLE — FINAL RICH BACKGROUND
+   Paste this at the very TOP of index.css before everything else
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Floating / bounce animations ── */
+@keyframes fa {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-12deg)
+  }
+
+  50% {
+    transform: translateY(-16px) rotate(-6deg)
+  }
+}
+
+@keyframes fb {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(9deg)
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(15deg)
+  }
+}
+
+@keyframes fc {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(22deg)
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(15deg)
+  }
+}
+
+@keyframes fd {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-6deg)
+  }
+
+  50% {
+    transform: translateY(-22px) rotate(-13deg)
+  }
+}
+
+@keyframes fe {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(14deg)
+  }
+
+  50% {
+    transform: translateY(-14px) rotate(22deg)
+  }
+}
+
+@keyframes ff {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-26deg)
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(-19deg)
+  }
+}
+
+@keyframes wgl {
+
+  0%,
+  100% {
+    transform: rotate(-9deg) scale(1)
+  }
+
+  50% {
+    transform: rotate(9deg) scale(1.06)
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) rotate(0deg)
+  }
+
+  34% {
+    transform: translate(9px, -7px) rotate(6deg)
+  }
+
+  67% {
+    transform: translate(-6px, 5px) rotate(-4deg)
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(0deg)
+  }
+}
+
+/* ── Rotation ── */
+@keyframes spinCW {
+  from {
+    transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes spinCCW {
+  from {
+    transform: rotate(360deg)
+  }
+
+  to {
+    transform: rotate(0deg)
+  }
+}
+
+/* ── Pulse / blink ── */
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: .55
+  }
+
+  50% {
+    transform: scale(1.18);
+    opacity: .90
+  }
+}
+
+@keyframes pulseB {
+
+  0%,
+  100% {
+    transform: scale(.85);
+    opacity: .25
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: .65
+  }
+}
+
+@keyframes shimmer {
+
+  0%,
+  100% {
+    opacity: .15
+  }
+
+  50% {
+    opacity: .45
+  }
+}
+
+/* ── Squiggle draw ── */
+@keyframes squig {
+  0% {
+    stroke-dashoffset: 0
+  }
+
+  100% {
+    stroke-dashoffset: 80
+  }
+}
+
+/* ── Confetti rise ── */
+@keyframes rise {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: .75
+  }
+
+  100% {
+    transform: translateY(-110vh) rotate(720deg);
+    opacity: 0
+  }
+}
+
+/* ══ BODY — multi-ellipse colour wash + dual dot grid ══ */
+body {
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 120% 80% at 15% 10%, #ffe4cc 0%, transparent 55%),
+    radial-gradient(ellipse 100% 70% at 85% 90%, #ddf0ff 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 80% 15%, #fde6f5 0%, transparent 50%),
+    radial-gradient(ellipse 90% 65% at 10% 85%, #defce8 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, #fff3e0 0%, transparent 60%),
+    #fff9f5;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ══ Dot grid overlay ══ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 125, 69, .18) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(100, 160, 255, .14) 1px, transparent 1px);
+  background-size: 30px 30px, 15px 15px;
+  background-position: 0 0, 7.5px 7.5px;
+}
+
+/* ══ Diagonal hatch overlay ══ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(-45deg,
+      rgba(255, 125, 69, .04) 0px,
+      rgba(255, 125, 69, .04) 1px,
+      transparent 1px,
+      transparent 20px);
+}
+
+/* ══ All fixed background layers ══ */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Blobs */
+.bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(62px);
+}
+
+/* Generic floating element */
+.bg-f {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Confetti pieces */
+.bg-cf {
+  position: absolute;
+  pointer-events: none;
+  animation: rise linear infinite;
+}
+
+/* Stars */
+.bg-st {
+  position: absolute;
+}
+
+.bg-st.s1 {
+  top: 4vh;
+  left: 39vw;
+  animation: pulse 2.0s ease-in-out infinite;
+}
+
+.bg-st.s2 {
+  bottom: 7vh;
+  left: 26vw;
+  animation: pulseB 2.5s ease-in-out infinite .5s;
+}
+
+.bg-st.s3 {
+  top: 57vh;
+  right: 21vw;
+  animation: pulse 1.8s ease-in-out infinite 1s;
+}
+
+.bg-st.s4 {
+  top: 17vh;
+  right: 11vw;
+  animation: pulseB 2.2s ease-in-out infinite .3s;
+}
+
+.bg-st.s5 {
+  bottom: 33vh;
+  left: 16vw;
+  animation: pulse 3.0s ease-in-out infinite 1.5s;
+}
+
+.bg-st.s6 {
+  top: 32vh;
+  left: 58vw;
+  animation: pulseB 2.6s ease-in-out infinite .7s;
+}
+
+/* Glowing orbs */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  animation: shimmer ease-in-out infinite;
+}
+
+/* Doodle emojis */
+.bg-doodle {
+  position: absolute;
+  user-select: none;
+}
+
+.bg-doodle.d1 {
+  top: 2vh;
+  left: 2vw;
+  font-size: 30px;
+  animation: fa 4.0s ease-in-out infinite;
+  opacity: .48
+}
+
+.bg-doodle.d2 {
+  top: 2vh;
+  right: 2vw;
+  font-size: 30px;
+  animation: fb 5.0s ease-in-out infinite .5s;
+  opacity: .48
+}
+
+.bg-doodle.d3 {
+  bottom: 3vh;
+  left: 3vw;
+  font-size: 28px;
+  animation: fc 4.5s ease-in-out infinite 1.0s;
+  opacity: .46
+}
+
+.bg-doodle.d4 {
+  bottom: 3vh;
+  right: 3vw;
+  font-size: 28px;
+  animation: fd 5.5s ease-in-out infinite .3s;
+  opacity: .46
+}
+
+.bg-doodle.d5 {
+  top: 43vh;
+  left: 1vw;
+  font-size: 22px;
+  animation: fe 4.0s ease-in-out infinite 1.5s;
+  opacity: .42
+}
+
+.bg-doodle.d6 {
+  top: 37vh;
+  right: 1vw;
+  font-size: 22px;
+  animation: ff 5.0s ease-in-out infinite .8s;
+  opacity: .42
+}
+
+.bg-doodle.d7 {
+  top: 1.5vh;
+  left: 45vw;
+  font-size: 21px;
+  animation: fb 3.8s ease-in-out infinite .2s;
+  opacity: .42
+}
+
+.bg-doodle.d8 {
+  bottom: 2.5vh;
+  left: 43vw;
+  font-size: 21px;
+  animation: fc 4.8s ease-in-out infinite 1.2s;
+  opacity: .42
+}
+
+.bg-doodle.d9 {
+  top: 24vh;
+  left: 19vw;
+  font-size: 19px;
+  animation: wgl 3.0s ease-in-out infinite;
+  opacity: .40
+}
+
+.bg-doodle.d10 {
+  bottom: 27vh;
+  right: 17vw;
+  font-size: 19px;
+  animation: wgl 3.5s ease-in-out infinite 1.0s;
+  opacity: .40
+}
+
+.bg-doodle.d11 {
+  top: 67vh;
+  left: 61vw;
+  font-size: 18px;
+  animation: fa 5.5s ease-in-out infinite .6s;
+  opacity: .38
+}
+
+.bg-doodle.d12 {
+  top: 13vh;
+  right: 37vw;
+  font-size: 17px;
+  animation: drift 6.0s ease-in-out infinite;
+  opacity: .38
+}
+
+.bg-doodle.d13 {
+  bottom: 14vh;
+  left: 20vw;
+  font-size: 17px;
+  animation: fe 4.2s ease-in-out infinite .4s;
+  opacity: .36
+}
+
+.bg-doodle.d14 {
+  top: 78vh;
+  right: 14vw;
+  font-size: 18px;
+  animation: fd 5.2s ease-in-out infinite 1.8s;
+  opacity: .38
+}
+
+/* ══ Page content must sit above background ══ */
+.home-screen,
+.lobby-screen,
+.game-screen,
+.gameover-screen {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
+
+
+
+
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: transparent;
+  color: #333;
+}
+
+/* ─── SHARED ──────────────────────────────────────── */
+
+.btn-primary {
+  width: 100%;
+  padding: 13px;
+  background: #ff7d45;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* ─── HOME SCREEN ─────────────────────────────────── */
+
+.home-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: transparent;
+}
+
+.home-logo {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ff7d45;
+  margin-bottom: 4px;
+  letter-spacing: -1px;
+}
+
+.home-logo span {
+  color: #ffd166;
+}
+
+.home-tagline {
+  color: #bbb;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+.home-card {
+  background: white;
+  border-radius: 24px;
+  border: 2px solid #ffe0cc;
+  padding: 28px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.home-tabs {
+  display: flex;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid #ffd166;
+  margin-bottom: 20px;
+}
+
+.home-tab {
+  flex: 1;
+  padding: 10px;
+  background: transparent;
+  color: #ff7d45;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+}
+
+.home-tab.active {
+  background: #ff7d45;
+  color: white;
+}
+
+.home-input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  background: #fff8f0;
+  border: 2px solid #ffe0cc;
+  border-radius: 12px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  outline: none;
+}
+
+.home-input:focus {
+  border-color: #ff7d45;
+}
+
+.home-input::placeholder {
+  color: #ccc;
+}
+
+.home-sliders {
+  margin-bottom: 14px;
+}
+
+.home-sliders label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.home-sliders input[type="range"] {
+  accent-color: #ff7d45;
+  cursor: pointer;
+}
+
+.private-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.private-toggle input[type="checkbox"] {
+  accent-color: #ff7d45;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.home-error {
+  color: #ff7d45;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* ─── LOBBY SCREEN ────────────────────────────────── */
+
+.lobby-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: transparent;
+}
+
+.lobby-card {
+  background: white;
+  border-radius: 24px;
+  border: 2px solid #ffe0cc;
+  padding: 28px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.lobby-title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ff7d45;
+  margin-bottom: 4px;
+}
+
+.lobby-sub {
+  text-align: center;
+  font-size: 13px;
+  color: #bbb;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Room code box */
+.lobby-code-box {
+  background: #fff8f0;
+  border: 2px dashed #ffd166;
+  border-radius: 16px;
+  padding: 14px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.lobby-code-label {
+  font-size: 11px;
+  color: #bbb;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.lobby-code-val {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ff7d45;
+  letter-spacing: 6px;
+}
+
+.lobby-copy-btn {
+  margin-top: 8px;
+  padding: 5px 16px;
+  background: #ff7d45;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Invite link for private rooms */
+.lobby-invite-box {
+  background: #fff8f0;
+  border: 2px solid #ffe0cc;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lobby-invite-label {
+  font-size: 11px;
+  color: #bbb;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.lobby-invite-url {
+  flex: 1;
+  font-size: 11px;
+  color: #ff7d45;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.lobby-invite-btn {
+  padding: 4px 10px;
+  background: #ff7d45;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  flex-shrink: 0;
+}
+
+/* Settings summary */
+.lobby-settings {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  justify-content: center;
+}
+
+.lobby-setting-chip {
+  background: #fff8f0;
+  border: 2px solid #ffe0cc;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ff7d45;
+}
+
+.lobby-private-chip {
+  background: #f0edff;
+  border: 2px solid #d0c8ff;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7c6be0;
+}
+
+/* Player grid */
+.lobby-players {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.lobby-player-card {
+  background: #fff8f0;
+  border: 2px solid #ffe0cc;
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lobby-player-card.is-host {
+  border-color: #ffd166;
+}
+
+.lobby-avatar {
+  font-size: 24px;
+}
+
+.lobby-player-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+}
+
+.lobby-host-tag {
+  font-size: 11px;
+  color: #f0a500;
+  font-weight: 700;
+}
+
+.lobby-you-tag {
+  font-size: 11px;
+  color: #6bcb77;
+  font-weight: 700;
+}
+
+.lobby-hint {
+  text-align: center;
+  font-size: 13px;
+  color: #bbb;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ─── GAME SCREEN ─────────────────────────────────── */
+
+.game-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Top bar */
+.game-topbar {
+  background: #ff7d45;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0 0 20px 20px;
+  flex-shrink: 0;
+}
+
+.topbar-logo {
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.topbar-logo span {
+  color: #ffd166;
+}
+
+.topbar-round-badge {
+  background: #fff3e0;
+  color: #ff7d45;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+}
+
+.topbar-timer {
+  background: white;
+  color: #ff7d45;
+  font-size: 16px;
+  font-weight: 800;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #ffd166;
+  transition: color 0.3s;
+}
+
+.topbar-timer.urgent {
+  color: #e94560;
+  border-color: #e94560;
+}
+
+/* Word hint row */
+.word-row {
+  text-align: center;
+  padding: 10px 16px 4px;
+  flex-shrink: 0;
+}
+
+.word-hint {
+  display: inline-flex;
+  gap: 5px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.letter-box {
+  min-width: 18px;
+  height: 26px;
+  border-bottom: 3px solid #ff7d45;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: #ff7d45;
+  padding-bottom: 2px;
+}
+
+.word-category {
+  font-size: 11px;
+  color: #bbb;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Main 3-column layout */
+.game-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 8px 10px;
+  gap: 10px;
+}
+
+/* ─── PLAYER SIDEBAR ──────────────────────────────── */
+
+.player-sidebar {
+  width: 110px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+}
+
+.sidebar-card {
+  background: white;
+  border: 2px solid #ffe0cc;
+  border-radius: 14px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+}
+
+.sidebar-card.is-drawer {
+  border-color: #ff7d45;
+  background: #fff3ec;
+}
+
+.sidebar-card.has-guessed {
+  border-color: #6bcb77;
+  background: #f0fff3;
+}
+
+.sidebar-emoji {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  border: 2px solid white;
+}
+
+.sidebar-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #555;
+}
+
+.sidebar-score {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ff7d45;
+}
+
+/* Small badge top-right of card */
+.card-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.card-badge.pencil {
+  background: #ff7d45;
+  color: white;
+}
+
+.card-badge.check {
+  background: #6bcb77;
+  color: white;
+}
+
+/* Crown for top scorer */
+.card-crown {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+}
+
+/* ─── CANVAS ──────────────────────────────────────── */
+
+.canvas-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.canvas-box {
+  background: white;
+  border-radius: 20px;
+  border: 3px solid #ffd166;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.canvas-el {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Toolbar */
+.toolbar {
+  background: white;
+  border: 2px solid #ffe0cc;
+  border-radius: 16px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.color-row {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.color-dot.active {
+  border-color: #333;
+  transform: scale(1.15);
+}
+
+.size-row {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.size-dot {
+  border-radius: 50%;
+  background: #555;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: none;
+  padding: 0;
+}
+
+.size-dot.active {
+  background: #ff7d45;
+}
+
+.action-btns {
+  display: flex;
+  gap: 5px;
+}
+
+.tool-btn {
+  background: #fff3ec;
+  border: 2px solid #ffd166;
+  border-radius: 10px;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tool-btn:hover {
+  background: #ffe0cc;
+}
+
+/* ─── CHAT ────────────────────────────────────────── */
+
+.chat-area {
+  width: 140px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-box {
+  background: white;
+  border: 2px solid #ffe0cc;
+  border-radius: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-title {
+  background: #fff3ec;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ff7d45;
+  border-bottom: 2px solid #ffe0cc;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.chat-msg {
+  font-size: 11px;
+  color: #666;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.chat-msg strong {
+  color: #ff7d45;
+  font-weight: 700;
+}
+
+.chat-msg.correct {
+  background: #f0fff3;
+  border-radius: 8px;
+  padding: 3px 6px;
+  color: #27a745;
+  font-weight: 700;
+}
+
+.chat-msg.correct strong {
+  color: #27a745;
+}
+
+.chat-msg.system {
+  color: #bbb;
+  font-style: italic;
+  text-align: center;
+  padding: 3px 0;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  border-top: 2px solid #ffe0cc;
+  flex-shrink: 0;
+}
+
+.chat-input {
+  flex: 1;
+  border: 2px solid #ffe0cc;
+  border-radius: 10px;
+  padding: 5px 7px;
+  font-size: 11px;
+  font-family: 'Nunito', sans-serif;
+  outline: none;
+  color: #333;
+  background: #fff8f0;
+  min-width: 0;
+}
+
+.chat-input:focus {
+  border-color: #ff7d45;
+}
+
+.chat-send {
+  background: #ff7d45;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  width: 28px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+.chat-send:hover {
+  opacity: 0.88;
+}
+
+/* ─── WORD PICKER OVERLAY ─────────────────────────── */
+
+.word-picker-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 125, 69, 0.15);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.word-picker-box {
+  background: white;
+  border: 3px solid #ffd166;
+  border-radius: 24px;
+  padding: 32px 28px;
+  text-align: center;
+  max-width: 340px;
+  width: 90%;
+}
+
+.word-picker-title {
+  font-size: 14px;
+  color: #bbb;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.word-picker-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.word-option {
+  padding: 14px;
+  background: #fff8f0;
+  color: #ff7d45;
+  border: 2px solid #ffd166;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.word-option:hover {
+  background: #ff7d45;
+  color: white;
+  border-color: #ff7d45;
+}
+
+/* ─── ROUND OVER OVERLAY ──────────────────────────── */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 125, 69, 0.2);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.overlay-box {
+  background: white;
+  border: 3px solid #ffd166;
+  border-radius: 24px;
+  padding: 36px 40px;
+  text-align: center;
+}
+
+.overlay-label {
+  font-size: 13px;
+  color: #bbb;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.overlay-word {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ff7d45;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+
+.overlay-sub {
+  font-size: 13px;
+  color: #bbb;
+  font-weight: 600;
+}
+
+/* ─── GAME OVER SCREEN ────────────────────────────── */
+
+.gameover-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: transparent;
+}
+
+.gameover-card {
+  background: white;
+  border-radius: 24px;
+  border: 2px solid #ffe0cc;
+  padding: 28px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.gameover-trophy {
+  font-size: 4rem;
+  margin-bottom: 8px;
+}
+
+.gameover-winner {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ff7d45;
+  margin-bottom: 4px;
+}
+
+.gameover-pts {
+  font-size: 14px;
+  color: #bbb;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+/* Podium */
+.podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.podium-place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.podium-emoji {
+  font-size: 24px;
+}
+
+.podium-block {
+  width: 60px;
+  background: #ffd166;
+  color: #7a5500;
+  border-radius: 10px 10px 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.podium-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+}
+
+.podium-pts {
+  font-size: 11px;
+  color: #ff7d45;
+  font-weight: 700;
+}
+
+/* Leaderboard list */
+.lb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.lb-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff8f0;
+  border: 2px solid #ffe0cc;
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.lb-row.first {
+  border-color: #ffd166;
+}
+
+.lb-rank {
+  font-size: 16px;
+  min-width: 28px;
+}
+
+.lb-emoji {
+  font-size: 18px;
+}
+
+.lb-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+  text-align: left;
+}
+
+.lb-pts {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ff7d45;
+}
+
+/* ─── ADD THESE LINES AT THE BOTTOM OF YOUR index.css ─────── */
+
+/* Tie screen — players shown side by side */
+.tie-avatars {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 16px 0 20px;
+}
+
+.tie-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tie-emoji {
+  font-size: 2.5rem;
+  background: #fff8f0;
+  border: 3px solid #ffd166;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tie-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+}
+
+.tie-pts {
+  font-size: 12px;
+  font-weight: 800;
+  color: #ff7d45;
+}
+
+/* Leaderboard row when it's a tie — orange border for everyone */
+.lb-row.tied {
+  border-color: #ffd166;
+}
+
+
+
+
+
+/* ─── ADD THESE AT THE BOTTOM OF index.css ───────────────────
+   Moderation button styles — kick, ban, vote kick
+   ──────────────────────────────────────────────────────────── */
+
+/* Mod buttons in lobby player card */
+.lobby-mod-btns {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* Mod buttons in game sidebar */
+.sidebar-mod-btns {
+  display: flex;
+  gap: 3px;
+  margin-top: 4px;
+  justify-content: center;
+}
+
+/* Base mod button */
+.mod-btn {
+  border: none;
+  border-radius: 6px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+
+
+/* Ban — red, stronger */
+.mod-btn.ban {
+  background: #fff0f0;
+  color: #e94560;
+  border: 1.5px solid #f5c0c0;
+}
+
+.mod-btn.ban:hover {
+  background: #e94560;
+  color: white;
+  border-color: #e94560;
+}
+
+/* Vote kick — grey/neutral */
+.mod-btn.vote {
+  background: #f5f5f5;
+  color: #888;
+  border: 1.5px solid #ddd;
+}
+
+.mod-btn.vote:hover {
+  background: #888;
+  color: white;
+  border-color: #888;
+}
+
+/* Small red badge showing vote count */
+.vote-count {
+  background: #e94560;
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 0 5px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* Vote progress text under player name in lobby */
+.vote-progress-text {
+  font-size: 10px;
+  color: #e94560;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+
+/* ─── ADD THESE AT THE BOTTOM OF index.css ───────────────────
+   Word panel — custom words + suggestions UI
+   ──────────────────────────────────────────────────────────── */
+
+.word-panel {
+  background: #fff8f0;
+  border: 2px solid #ffe0cc;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 4px;
+}
+
+.word-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.word-panel-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ff7d45;
+}
+
+.word-panel-count {
+  background: #ff7d45;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* Input row */
+.word-panel-input-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.word-panel-input {
+  flex: 1;
+  padding: 8px 12px;
+  background: white;
+  border: 2px solid #ffe0cc;
+  border-radius: 10px;
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  outline: none;
+}
+
+.word-panel-input:focus {
+  border-color: #ff7d45;
+}
+
+.word-panel-input::placeholder {
+  color: #ccc;
+}
+
+.word-panel-add-btn {
+  padding: 8px 16px;
+  background: #ff7d45;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  flex-shrink: 0;
+}
+
+.word-panel-add-btn:hover {
+  opacity: 0.88;
+}
+
+/* Feedback line for players */
+.word-panel-feedback {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6bcb77;
+  margin-bottom: 8px;
+}
+
+/* Section inside word panel */
+.word-panel-section {
+  margin-top: 10px;
+}
+
+.word-panel-section-label {
+  font-size: 11px;
+  color: #bbb;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+/* Hint when empty */
+.word-panel-hint {
+  font-size: 12px;
+  color: #ccc;
+  font-weight: 600;
+  text-align: center;
+  padding: 4px 0;
+}
+
+/* Word chips */
+.word-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.word-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: white;
+  border: 2px solid #ffd166;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ff7d45;
+}
+
+.word-chip.readonly {
+  border-color: #ffe0cc;
+  color: #aaa;
+}
+
+.chip-remove {
+  background: none;
+  border: none;
+  color: #ff7d45;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.chip-remove:hover {
+  color: #e94560;
+}
+
+/* Pending suggestions list */
+.suggestions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.suggestion-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border: 2px solid #ffe0cc;
+  border-radius: 10px;
+  padding: 7px 10px;
+}
+
+.suggestion-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.suggestion-word {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  text-transform: capitalize;
+}
+
+.suggestion-by {
+  font-size: 11px;
+  color: #bbb;
+  font-weight: 600;
+}
+
+.suggestion-btns {
+  display: flex;
+  gap: 5px;
+}
+
+.suggestion-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.suggestion-btn.approve {
+  background: #f0fff3;
+  color: #6bcb77;
+  border: 2px solid #c3e6cb;
+}
+
+.suggestion-btn.approve:hover {
+  background: #6bcb77;
+  color: white;
+  border-color: #6bcb77;
+}
+
+.suggestion-btn.reject {
+  background: #fff0f0;
+  color: #e94560;
+  border: 2px solid #f5c0c0;
+}
+
+.suggestion-btn.reject:hover {
+  background: #e94560;
+  color: white;
+  border-color: #e94560;
+}
+
+.word-panel-count-hidden {
+  background: #f5f0ff;
+  color: #7c6be0;
+  border: 1.5px solid #d0c8ff;
+}
+
+
+
+/* ─── ADD AT BOTTOM OF index.css ─────────────────────────────
+   Word mode selector (HomeScreen) + mode badges (GameScreen)
+   ──────────────────────────────────────────────────────────── */
+
+/* Mode selector container */
+.mode-selector {
+  margin-bottom: 12px;
+}
+
+.mode-selector-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+/* 3 mode buttons side by side */
+.mode-options {
+  display: flex;
+  gap: 8px;
+}
+
+.mode-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 6px;
+  background: #fff8f0;
+  border: 2px solid #ffe0cc;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.mode-btn:hover {
+  border-color: #ffd166;
+  background: #fff3e0;
+}
+
+.mode-btn.active {
+  border-color: #ff7d45;
+  background: #fff3ec;
+}
+
+.mode-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.mode-name {
+  font-size: 12px;
+  font-weight: 800;
+  color: #ff7d45;
+}
+
+.mode-desc {
+  font-size: 10px;
+  font-weight: 600;
+  color: #bbb;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Mode badges shown in game top bar */
+.hint-mode-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-family: 'Nunito', sans-serif;
+}
+
+.hidden-badge {
+  background: #fff0f0;
+  color: #e94560;
+  border: 1.5px solid #f5c0c0;
+}
+
+.combo-badge {
+  background: #fffbe6;
+  color: #b07d00;
+  border: 1.5px solid #ffd166;
+}
+
+/* Hidden mode — centred message instead of letter boxes */
+.hint-hidden {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Drawer's hint in top bar — plain text, not letter boxes */
+.hint-display-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ff7d45;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+
+
+
+/* ─── ADD AT BOTTOM OF index.css ─────────────────────────────
+   Spectator mode styles
+   ──────────────────────────────────────────────────────────── */
+
+/* Orange banner at top of game screen for spectators */
+.spectator-banner {
+  background: #fff3ec;
+  border-bottom: 2px solid #ffd166;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ff7d45;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Spectator card in the sidebar — slightly greyed out */
+.sidebar-card.is-spectator {
+  border-color: #ece9e4;
+  background: #faf9f7;
+  opacity: 0.85;
+}
+
+/* 👁 badge in top-right of spectator card */
+.card-badge.spectator-badge {
+  background: #ece9e4;
+  color: #aaa;
+  font-size: 10px;
+}
+
+/* Spectator toggle on HomeScreen join tab */
+.spectator-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px 12px;
+  background: #fff8f0;
+  border: 2px solid #ffe0cc;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  user-select: none;
+}
+
+.spectator-toggle input[type="checkbox"] {
+  accent-color: #ff7d45;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.spectator-toggle-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.spectator-icon {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.spectator-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: #ff7d45;
+}
+
+.spectator-desc {
+  display: block;
+  font-size: 11px;
+  color: #bbb;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+
+
+/* ─── ADD AT BOTTOM OF index.css ─────────────────────────────
+   Public matchmaking styles
+   ──────────────────────────────────────────────────────────── */
+
+/* Big Quick Join button on HomeScreen */
+.quick-join-btn {
+  width: 100%;
+  padding: 16px;
+  background: #ff7d45;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 14px rgba(255, 125, 69, 0.35);
+  margin-bottom: 4px;
+}
+
+.quick-join-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  box-shadow: 0 6px 18px rgba(255, 125, 69, 0.45);
+}
+
+.quick-join-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Spinning dot while searching */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.quick-join-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2.5px solid rgba(255, 255, 255, 0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+/* "or" divider between Quick Join and tabs */
+.home-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 12px;
+  color: #ccc;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.home-divider::before,
+.home-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ffe0cc;
+}
+
+/* Public room banner in lobby */
+.public-room-banner {
+  background: #fff3ec;
+  border: 1.5px solid #ffd166;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ff7d45;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+/* 🌍 Public chip in settings row */
+.lobby-public-chip {
+  background: #e8f5e9;
+  border: 1.5px solid #c8e6c9;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2e7d32;
+}
