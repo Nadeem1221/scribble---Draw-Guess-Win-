@@ -116,7 +116,12 @@ Open **http://localhost:5173** in two tabs and test.
 - Tie detection
 - Game results saved to MongoDB
 
----
+# use mongoDB to store the game result only
+
+![Database Result](./client/src/assets/images/db_image.png)
+
+
+
 
 ## Project Structure
 
