@@ -2,11 +2,6 @@
 
 
 
-/* ═══════════════════════════════════════════════════════════════
-   SCRIBBLE — FINAL RICH BACKGROUND
-   Paste this at the very TOP of index.css before everything else
-   ═══════════════════════════════════════════════════════════════ */
-
 /* ── Floating / bounce animations ── */
 @keyframes fa {
 
@@ -1457,7 +1452,7 @@ body {
   color: #ff7d45;
 }
 
-/* ─── ADD THESE LINES AT THE BOTTOM OF YOUR index.css ─────── */
+
 
 /* Tie screen — players shown side by side */
 .tie-avatars {
@@ -1508,9 +1503,9 @@ body {
 
 
 
-/* ─── ADD THESE AT THE BOTTOM OF index.css ───────────────────
+/* 
    Moderation button styles — kick, ban, vote kick
-   ──────────────────────────────────────────────────────────── */
+    */
 
 /* Mod buttons in lobby player card */
 .lobby-mod-btns {
@@ -1591,9 +1586,9 @@ body {
 }
 
 
-/* ─── ADD THESE AT THE BOTTOM OF index.css ───────────────────
+/* 
    Word panel — custom words + suggestions UI
-   ──────────────────────────────────────────────────────────── */
+   */
 
 .word-panel {
   background: #fff8f0;
@@ -1827,7 +1822,7 @@ body {
 
 
 
-/* ─── ADD AT BOTTOM OF index.css ─────────────────────────────
+/* 
    Word mode selector (HomeScreen) + mode badges (GameScreen)
    ──────────────────────────────────────────────────────────── */
 
@@ -1937,9 +1932,9 @@ body {
 
 
 
-/* ─── ADD AT BOTTOM OF index.css ─────────────────────────────
+/* 
    Spectator mode styles
-   ──────────────────────────────────────────────────────────── */
+    */
 
 /* Orange banner at top of game screen for spectators */
 .spectator-banner {
@@ -2018,9 +2013,9 @@ body {
 
 
 
-/* ─── ADD AT BOTTOM OF index.css ─────────────────────────────
+/* 
    Public matchmaking styles
-   ──────────────────────────────────────────────────────────── */
+    */
 
 /* Big Quick Join button on HomeScreen */
 .quick-join-btn {
@@ -2112,3 +2107,87 @@ body {
   font-weight: 700;
   color: #2e7d32;
 }
+
+
+/* 
+   Word category picker styles
+    */
+
+.category-picker {
+  margin-top: 14px;
+  margin-bottom: 4px;
+}
+
+.category-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.category-picker-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.category-picker-hint {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ff7d45;
+  background: #fff3ec;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1.5px solid #ffd166;
+}
+
+/* Grid of category chips */
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.category-chip {
+  padding: 6px 12px;
+  background: #fff8f0;
+  border: 2px solid #ffe0cc;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #aaa;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.category-chip:hover {
+  border-color: #ffd166;
+  color: #ff7d45;
+  background: #fff3ec;
+}
+
+.category-chip.selected {
+  background: #ff7d45;
+  border-color: #ff7d45;
+  color: white;
+}
+
+/* Reset link */
+.category-reset {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: #bbb;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.category-reset:hover { color: #ff7d45; }
