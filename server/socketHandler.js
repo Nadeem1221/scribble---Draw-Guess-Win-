@@ -58,13 +58,24 @@ function findRoom(socketId) {
   return Object.values(rooms).find(r => r.getPlayer(socketId)) || null;
 }
 
-function getWordChoices(room, count) {
+async function getWordChoices(room, count) {
   const available      = room.getAvailableCustomWords();
   const shuffledCustom = [...available].sort(() => Math.random() - 0.5);
   const picked         = shuffledCustom.slice(0, count);
+
   if (picked.length < count) {
-    const shuffledDefault = [...defaultWords].sort(() => Math.random() - 0.5);
-    picked.push(...shuffledDefault.slice(0, count - picked.length));
+    const needed = count - picked.length;
+    try {
+      // Fetching nouns from random-word-form (usually better for drawing)
+      const resp = await fetch(`https://random-word-form.herokuapp.com/random/noun?count=${needed}`);
+      if (!resp.ok) throw new Error("API call failed");
+      const apiWords = await resp.json();
+      picked.push(...apiWords);
+    } catch (err) {
+      console.warn("Random Word API failed, falling back to local dataset.", err.message);
+      const shuffledDefault = [...defaultWords].sort(() => Math.random() - 0.5);
+      picked.push(...shuffledDefault.slice(0, needed));
+    }
   }
   return picked;
 }
@@ -108,7 +119,7 @@ function broadcastWordList(io, room) {
 
 // ── game loop ─────────────────────────────────────────────────
 
-function startNewRound(io, room) {
+async function startNewRound(io, room) {
   room.round++;
   if (room.round > room.settings.rounds) { endGame(io, room); return; }
 
@@ -120,7 +131,7 @@ function startNewRound(io, room) {
   const drawer      = room.getDrawer();
   if (!drawer)      { endGame(io, room); return; }
 
-  const wordChoices = getWordChoices(room, room.settings.wordCount);
+  const wordChoices = await getWordChoices(room, room.settings.wordCount);
   pendingWords[room.id] = wordChoices;
 
   io.to(room.id).emit("new_round", {
@@ -216,11 +227,12 @@ async function endGame(io, room) {
   });
   room.status = "finished";
   try {
-    await GameResult.create({
+    const res = await GameResult.create({
       roomId:  room.id,
       players: leaderboard.map(p => ({ name: p.name, score: p.score })),
       winner:  isTie ? null : leaderboard[0]?.name,
     });
+    console.log(`Game result saved to MongoDB (ID: ${res._id})`);
   } catch (err) {
     console.error("Could not save game result:", err.message);
   }

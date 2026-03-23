@@ -115,13 +115,7 @@ Open **http://localhost:5173** in two tabs and test.
 - Kick / ban / vote kick
 - Tie detection
 - Game results saved to MongoDB
-
-# use mongoDB to store the game result only
-
-![Database Result](./client/src/assets/images/db_image.png)
-
-
-
+      client/src/assets/images/db_image.png
 
 ## Project Structure
 
